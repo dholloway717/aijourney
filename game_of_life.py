@@ -35,8 +35,6 @@ def num_neighbors_adjxy(x ,y ,num_x_pixels ,num_y_pixels ,A):
     
     count = 0
     
-    
-    
     ################################################################
     # Test to see if x,y is inside a boundary frame 1 pixel in width
     ################################################################
@@ -51,29 +49,7 @@ def num_neighbors_adjxy(x ,y ,num_x_pixels ,num_y_pixels ,A):
         ###################################################
     if(within_bounds and large_enough_array):
         
-        if(int(A[y-1,x-1])==1):
-            count = count + 1
-        
-        if(int(A[y-1,x])==1):
-            count = count + 1
-        
-        if(int(A[y-1,x+1])==1):
-            count = count + 1
-        
-        if(int(A[y,x-1])==1):
-            count = count + 1
-        
-        if(int(A[y,x+1])==1):
-            count = count + 1
-        
-        if(int(A[y+1,x-1])==1):
-            count = count + 1
-        
-        if(int(A[y+1,x])==1):
-            count = count + 1
-        
-        if(int(A[y+1,x+1])==1):
-            count = count + 1
+        count = int(A[y-1,x-1]+A[y-1,x]+A[y-1,x+1]+A[y,x-1]+A[y,x+1]+A[y+1,x-1]+A[y+1,x]+A[y+1,x+1])
             
         return count
 ##################################################
@@ -83,56 +59,32 @@ def num_neighbors_adjxy(x ,y ,num_x_pixels ,num_y_pixels ,A):
     #         Top-left corner
     ###################################
     elif((x==0)and(y==0)and(large_enough_array)):
-        if(int(A[y+1,x])==1):
-            count = count + 1
         
-        if(int(A[y+1,x+1])==1):
-            count = count + 1
+        count = int(A[y+1,x]+A[y+1,x+1]+A[y,x+1])
         
-        if(int(A[y,x+1])==1):
-            count = count + 1
-            
         return count
     ###################################
     #        Top-right corner
     ###################################
     elif((x==num_x_pixels-1)and(y==0)and(large_enough_array)):
-        if(int(A[y,x-1])==1):
-            count = count + 1
         
-        if(int(A[y+1,x-1])==1):
-            count = count + 1
-        
-        if(int(A[y+1,x])==1):
-            count = count + 1
+        count = int(A[y,x-1]+A[y+1,x-1]+A[y+1,x])
             
         return count
     ####################################
     #        Bottom-left corner
     ####################################
     elif((x==0)and(y==num_y_pixels-1)and(large_enough_array)):
-        if(int(A[y-1,x])==1):
-            count = count + 1
         
-        if(int(A[y-1,x+1])==1):
-            count = count + 1
+        count = int(A[y-1,x]+A[y-1,x+1]+A[y,x+1])   
         
-        if(int(A[y,x+1])==1):
-            count = count + 1
-            
         return count
     #####################################
     #      Bottom-right corner
     #####################################
     elif((x==num_x_pixels-1)and(y==num_y_pixels-1)and(large_enough_array)):
-        if(int(A[y-1,x-1])==1):
-            count = count + 1
         
-        if(int(A[y-1,x])==1):
-            count = count + 1
-        
-        if(int(A[y,x-1])==1):
-            count = count + 1
+        count = int(A[y-1,x-1]+A[y-1,x]+A[y,x-1])
             
         return count
 ######################################################
@@ -140,84 +92,34 @@ def num_neighbors_adjxy(x ,y ,num_x_pixels ,num_y_pixels ,A):
 ######################################################
              #--------Top--------#
     elif((x>0)and(x<num_x_pixels-1)and(y==0)and(large_enough_array)):
-        if(int(A[y,x-1])==1):
-            count = count + 1
         
-        if(int(A[y+1,x-1])==1):
-            count = count + 1
+        count = int(A[y,x-1]+A[y+1,x-1]+A[y+1,x]+A[y+1,x+1]+A[y,x+1])
         
-        if(int(A[y+1,x])==1):
-            count = count + 1
-        
-        if(int(A[y+1,x+1])==1):
-            count = count + 1
-        
-        if(int(A[y,x+1])==1):
-            count = count + 1
-            
         return count
              #---------Bottom--------#
     elif((x>0)and(x<num_x_pixels-1)and(y==num_y_pixels-1)and(large_enough_array)):
-        if(int(A[y,x-1])==1):
-            count = count + 1
-        
-        if(int(A[y-1,x-1])==1):
-            count = count + 1
-        
-        if(int(A[y-1,x])==1):
-            count = count + 1
-        
-        if(int(A[y-1,x+1])==1):
-            count = count + 1
-        
-        if(int(A[y,x+1])==1):
-            count = count + 1
+        count = int(A[y,x-1]+A[y-1,x-1]+A[y-1,x]+A[y-1,x+1]+A[y,x+1])
             
         return count
         #---------------Left------------------#
     elif((y>0)and(y<num_y_pixels-1)and(x==0)and(large_enough_array)):
-        if(int(A[y-1,x])==1):
-            count = count + 1
         
-        if(int(A[y-1,x+1])==1):
-            count = count + 1
-        
-        if(int(A[y,x+1])==1):
-            count = count + 1
-        
-        if(int(A[y+1,x+1])==1):
-            count = count + 1
-        
-        if(int(A[y+1,x])==1):
-            count = count + 1
+        count = int(A[y-1,x]+A[y-1,x+1]+A[y,x+1]+A[y+1,x+1]+A[y+1,x])
             
         return count
         #---------------Right------------------#
     elif((y>0)and(y<num_y_pixels-1)and(x==num_x_pixels-1)and(large_enough_array)):
-        if(int(A[y-1,x])==1):
-            count = count + 1
         
-        if(int(A[y-1,x-1])==1):
-            count = count + 1
+        count = int(A[y-1,x]+A[y-1,x-1]+A[y,x-1]+A[y+1,x-1]+A[y+1,x])    
         
-        if(int(A[y,x-1])==1):
-            count = count + 1
-        
-        if(int(A[y+1,x-1])==1):
-            count = count + 1
-        
-        if(int(A[y+1,x])==1):
-            count = count + 1
-  
-            
         return count
         
     else:
-        print("Error:")
+        print("Error:Array to small.")
         pygame.quit()
         
     return count
-
+ 
 ##########################################################
 #     updates next generation array -> numpy array
 ##########################################################
